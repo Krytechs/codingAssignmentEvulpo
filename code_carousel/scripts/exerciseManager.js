@@ -19,7 +19,12 @@ export default function ExerciseManager({result: {values: tabledata}}) {
     }
 
     this.calculateTotalScore = function () {
-        return this.exercises.reduce((item, score) => item.getScore() + score, 0)
+        return this.exercises.reduce((score, item) => {
+            return item.getScore() + score
+        }, 0)
+    }
+    this.calculateMaxScore = function () {
+        return this.exercises.reduce((score, item) => item.score + score, 0)
     }
 
     this.getNextExercise = function () {
@@ -40,7 +45,7 @@ function Exercise(rawExercise) {
     this.question = rawExercise[2];
     this.answerOptions = rawExercise[3].split(';');
     this.answerIndex = rawExercise[4];
-    this.score = rawExercise[5];
+    this.score = parseInt(rawExercise[5]);
     this.answeredCorrect = false;
     this.getScore = function () {
         if (this.answeredCorrect) return this.score;

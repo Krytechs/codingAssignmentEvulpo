@@ -24,6 +24,9 @@ export default function HtmlManager(exerciseManager) {
 
     this.renderNewQuestion = function () {
         const exercise = this.appHandle.exerciseManager.getNextExercise();
+        if (!exercise) {
+            return this.renderScoreboard();
+        }
         this.renderQuestion(exercise);
     }
 
@@ -35,7 +38,15 @@ export default function HtmlManager(exerciseManager) {
         })
     }
 
-    this.clearAnswerWrapper =function () {
+    this.renderScoreboard = function () {
+        const score = this.appHandle.exerciseManager.calculateTotalScore();
+        const maxScore = this.appHandle.exerciseManager.calculateMaxScore();
+        this.appHandle.checkButton.classList.add('hide');
+        this.clearAnswerWrapper();
+        this.appHandle.question.innerText = `Du hast insgesamt ${score} von möglichen ${maxScore} Punkten erreicht.`;
+    }
+
+    this.clearAnswerWrapper = function () {
         const answerWrapper = this.appHandle.answerWrapper;
         while (answerWrapper.childNodes.length) {
             answerWrapper.removeChild(answerWrapper.childNodes[0])
