@@ -31,11 +31,12 @@ export default function ExerciseManager({result: {values: tabledata}}) {
         return this.exercises[this.currentIndex_]
     }
 
+    this.isAnswerCorrect = function (answerIndex){
+        return this.getCurrentExercise().checkAnswer(answerIndex);
+    }
 }
 
 function Exercise(rawExercise) {
-    this.topic = rawExercise[0];
-    this.id = rawExercise[1];
     this.question = rawExercise[2];
     this.answerOptions = rawExercise[3].split(';');
     this.answerIndex = rawExercise[4];
@@ -45,10 +46,14 @@ function Exercise(rawExercise) {
         if (this.answeredCorrect) return this.score;
         return 0;
     }
+    this.checkAnswer = function(answerIndex){
+        this.answeredCorrect = this.answerIndex === answerIndex;
+        return this.answeredCorrect;
+    }
 }
 
 function shuffleArray(array) {
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 20; i++) {
         array = array.sort(() => 0.5 - Math.random())
     }
 }

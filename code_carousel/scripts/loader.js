@@ -1,11 +1,11 @@
 import GoogleApiConnection from "./google-api-connection.js";
 import ExerciseManager from "./exerciseManager.js";
+import HtmlManager from "./htmlManager.js";
 
 window.loadApplication = function () {
     getExerciseData()
         .then(initialiseExerciseManager)
-        .then(createDom)
-        .then(initialiseApplication)
+        .then(initialiseHtmlManager)
         .then(start)
 }
 
@@ -17,21 +17,16 @@ function initialiseExerciseManager(item) {
     return new ExerciseManager(item);
 }
 
-function createDom(exerciseManager) {
-    console.log(exerciseManager);
-
-}
-
-function initialiseApplication() {
-
+function initialiseHtmlManager(exerciseManager){
+    return (new HtmlManager(exerciseManager)).initialiseApplication();
 }
 
 function start() {
     fadeOutLoader();
 }
 
-function fadeOutLoader(){
-    const loader = document.querySelector('.loading-wrapper');
+function fadeOutLoader() {
+    const loader = document.querySelector('.loader-wrapper');
     loader.style.opacity = '0';
     setTimeout(() => {
         loader.style.display = 'none';

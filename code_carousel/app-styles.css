@@ -1,19 +1,73 @@
 /*all sections in app-container are flex rows*/
-#app-container > div{
+#app-container > div {
     display: flex;
     flex-direction: row;
     width: 100%;
 }
 
-#header{
+
+/*General*/
+button {
+    border-radius: 30px;
+    background-color: #fff;
+    border: 5px solid #ddd;
+    width: 20%;
+    height: 40px;
+}
+
+button.active{
+    border-color: #0000ff;
+}
+
+/*header*/
+#header {
     height: 10vh;
 }
-#main{
+
+/*Main*/
+#main {
+    flex-direction: column!important;
     height: 45vh;
 }
-#errors{
-    height: 30vh;
+
+#main > div {
+    flex-direction: row;
+    width: 100%;
+    display: flex;
+    height: 49%;
+    justify-content: space-evenly;
+    align-items: center;
 }
-#handle{
+
+/*Errors*/
+#alerts {
+    height: 30vh;
+    justify-content: center;
+    align-items: center;
+}
+#alerts > div{
+    width: 80%;
+    text-align: center;
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.error {
+    color: #fff;
+    background-color: #aa2222;
+}
+.correct{
+    background-color: limegreen;
+}
+
+/*Handle*/
+#handle {
+    justify-content: center;
     height: 15vh;
+}
+
+.hide{
+    display: none!important;
 }
