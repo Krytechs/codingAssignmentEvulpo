@@ -12,5 +12,4 @@ function getExerciseData() {
 
 function initializeApplicationBuilder(item) {
     new ApplicationBuilder(item);
-    console.log(item);
 }
