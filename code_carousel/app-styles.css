@@ -1,0 +1,19 @@
+/*all sections in app-container are flex rows*/
+#app-container > div{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+#header{
+    height: 5vw;
+}
+#main{
+    height: 45vw;
+}
+#errors{
+    height: 30vw;
+}
+#handle{
+    height: 20vw;
+}
